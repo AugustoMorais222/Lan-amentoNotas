@@ -17,25 +17,30 @@ public class SalaController {
     @PostMapping
     public void addSala(@RequestBody Sala sala) {
         try {
-        	salaService.addSala(sala);
-        }catch(Exception e) {
-        	System.out.println(e.getMessage());
+            salaService.addSala(sala);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
-    
+
     @GetMapping
     public Set<Sala> listarSalas() {
         return salaService.listarSalas();
     }
 
+    @GetMapping("{sala}/media/{matricula}")
+    public Double calcularMedia(@PathVariable String sala, @PathVariable Integer matricula) {
+        return salaService.calculaMediaSalaAluno(sala, matricula);
+    }
+
     @PostMapping("/{sala}/alunos")
     public void addAluno(@PathVariable String sala, @RequestBody Aluno aluno) {
-        salaService.addAluno(sala,aluno);
+        salaService.addAluno(sala, aluno);
     }
 
     @PostMapping("/{sala}/alunos/{matricula}/notas")
     public void lancarNota(@PathVariable String sala, @PathVariable Integer matricula, @RequestBody Double nota) {
-        salaService.addNota(sala,matricula,nota);
+        salaService.addNota(sala, matricula, nota);
     }
 
     @GetMapping("/{sala}/alunos")
@@ -45,12 +50,8 @@ public class SalaController {
 
     @GetMapping("/{sala}/alunos/{matricula}/aprovacao")
     public String aprovacao(@PathVariable String sala, @PathVariable Integer matricula) {
-        return salaService.isAprovado(sala,matricula);
+        return salaService.isAprovado(sala, matricula);
     }
-    
-
-
-
 
 
 }

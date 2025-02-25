@@ -21,6 +21,19 @@ public class Aluno {
         this.notas.add(nota);
     }
 
+
+
+    private Double calcularMedia(List<Double> notas) {
+        if (notas == null || notas.isEmpty()) {
+            return 0.0;
+        }
+        Double media = 0.0;
+        for (Double nota : notas) {
+            media += nota;
+        }
+        return media / (notas.size());
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
