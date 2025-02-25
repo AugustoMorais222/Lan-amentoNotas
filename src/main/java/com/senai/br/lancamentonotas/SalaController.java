@@ -22,6 +22,11 @@ public class SalaController {
         	System.out.println(e.getMessage());
         }
     }
+    
+    @GetMapping
+    public Set<Sala> listarSalas() {
+        return salaService.listarSalas();
+    }
 
     @PostMapping("/{sala}/alunos")
     public void addAluno(@PathVariable String sala, @RequestBody Aluno aluno) {

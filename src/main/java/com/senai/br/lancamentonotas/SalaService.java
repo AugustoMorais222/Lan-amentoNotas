@@ -66,6 +66,10 @@ public class SalaService {
             }
         }
     }
+    
+    public Set<Sala> listarSalas(){
+    	return this.salas;
+    }
 
     public List<Aluno> getAlunos(String nomeSala) {
         for(Sala sala : salas) {
