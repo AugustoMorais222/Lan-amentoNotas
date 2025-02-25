@@ -7,7 +7,7 @@ import java.util.List;
 public class Aluno {
     private String nome;
     private Integer matricula;
-    private List<Double> notas = new ArrayList<Double>();
+    private List<Double> notas;
 
     public Aluno() {
 

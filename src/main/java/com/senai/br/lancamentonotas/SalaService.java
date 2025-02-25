@@ -26,12 +26,39 @@ public class SalaService {
             }
         }
     }
+    
+    public Double calcularMedia(List<Double> notas){
+    	if (notas == null || notas.isEmpty()) {
+            return 0.0;
+        }
+    	Double media = 0.0;
+    	for(Double nota : notas) {
+    		media += nota;
+    	}
+    	return media / (notas.size());
+    }
+    
+    public String isAprovado(String nomeSala, Integer matricula){
+		for(Sala sala : salas){
+			if(sala.getNome().equals(nomeSala)) {
+			    for (Aluno aluno : sala.getAlunos()) {
+			        if (aluno.getMatricula().equals(matricula)) {
+			        	if(calcularMedia(aluno.getNotas())>= 6.0) {
+			        		return "Aprovado";
+			        	}
+			         
+			        }
+			    }
+			}
+		}
+		return "Reprovado";
+    }
 
     public void addNota(String nomeSala,Integer matricula, Double nota) {
         for(Sala sala : salas){
             if(sala.getNome().equals(nomeSala)) {
                 for (Aluno aluno : sala.getAlunos()) {
-                    if (aluno.getMatricula() == matricula) {
+                    if (aluno.getMatricula().equals(matricula)) {
                         aluno.addNota(nota);
                         break;
                     }
